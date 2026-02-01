@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="description" content="MeowSec Research Archives. Published whitepapers on advanced persistent threats, zero-day vulnerabilities, cryptographic analysis, and network protocol exploitation. Knowledge for the open web."/>
+<meta name="keywords" content="MeowSec Research, Cybersecurity Whitepapers, Vulnerability Research, Zero-Day, Cryptography, Network Exploitation, Security Analysis, Infosec Articles"/>
+<meta name="author" content="MeowSec Team"/>
+<meta name="robots" content="index, follow"/>
+<title>MeowSec | Research Archives</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#33ff00","primary-dim": "#22aa00",
+                        "background-dark": "#0a0a0a","background-darker": "#050505",
+                        "card-dark": "#111111",
+                        "border-dim": "#333333",
+                    },
+                    fontFamily: {
+                        "display": ["IBM Plex Mono", "monospace"],
+                        "mono": ["IBM Plex Mono", "monospace"]
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #1a1a1a 1px, transparent 1px), linear-gradient(to bottom, #1a1a1a 1px, transparent 1px)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'IBM Plex Mono', monospace;
+            background-color: #0a0a0a;
+            color: #e5e5e5;
+        }
+        .crt-overlay {
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+        .file-tree-line {
+            position: absolute;
+            left: 11px;
+            top: 24px;
+            bottom: 0;
+            width: 1px;
+            background-color: #333;
+        }
+        .file-tree-item {
+            position: relative;
+        }
+        .file-tree-item::before {
+            content: '';
+            position: absolute;
+            left: -16px;
+            top: 50%;
+            width: 12px;
+            height: 1px;
+            background-color: #333;
+        }
+        .tech-border {
+            border: 1px solid #333;
+            position: relative;
+        }
+        .tech-border::before {
+            content: "";
+            position: absolute;
+            top: -1px; left: -1px;
+            width: 8px; height: 8px;
+            border-top: 2px solid #33ff00;
+            border-left: 2px solid #33ff00;
+        }
+        .tech-border::after {
+            content: "";
+            position: absolute;
+            bottom: -1px; right: -1px;
+            width: 8px; height: 8px;
+            border-bottom: 2px solid #33ff00;
+            border-right: 2px solid #33ff00;
+        }
+        .blink {
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 0;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #33ff00;
+        }
+    </style>
+</head>
+<body class="bg-background-dark text-slate-300 selection:bg-primary selection:text-black overflow-hidden h-screen flex flex-col">
+<div class="fixed inset-0 z-50 pointer-events-none crt-overlay opacity-20 h-full w-full"></div>
+
+<!-- Top Navbar from Index -->
+<header class="fixed top-0 z-40 w-full border-b border-border-dim bg-background-dark/95 backdrop-blur-sm shrink-0">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <a href="index.html" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                <span class="text-primary font-bold text-lg">&gt;_</span>
+                <h1 class="font-mono font-bold text-xl tracking-tight text-white uppercase">MeowSec<span class="text-primary blink">_</span></h1>
+            </a>
+        </div>
+        <nav class="hidden md:flex items-center gap-8 text-xs tracking-widest uppercase">
+            <a class="text-slate-400 hover:text-primary transition-colors font-medium" href="index.html">[01] Home</a>
+            <a class="text-primary transition-colors font-medium" href="research.html">[02] Research</a>
+            <a class="text-slate-400 hover:text-primary transition-colors font-medium" href="exploits.html">[03] Exploits</a>
+            <a class="text-slate-400 hover:text-primary transition-colors font-medium" href="achievements.html">[04] Achievements</a>
+            <a class="text-slate-400 hover:text-primary transition-colors font-medium" href="about.html">[05] About</a>
+        </nav>
+        <div class="flex items-center gap-4">
+            <div class="hidden md:flex items-center gap-2 text-[10px] text-primary/60 font-mono border border-primary/20 px-2 py-1 bg-primary/5">
+                <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                SYSTEM: ONLINE
+            </div>
+            <button class="bg-primary hover:bg-primary-dim text-black px-4 py-2 text-xs font-bold font-mono transition-all flex items-center gap-2 uppercase tracking-wide">
+                Terminal Access
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- Main Container -->
+<div class="flex h-full pt-16 w-full max-w-7xl mx-auto border-x border-border-dim">
+    
+    <!-- Sidebar -->
+    <aside class="w-72 hidden lg:flex flex-col border-r border-border-dim bg-[#050505] h-full overflow-y-auto">
+        <div class="p-4 border-b border-border-dim">
+            <div class="flex items-center gap-2 mb-4">
+                <span class="material-symbols-outlined text-primary text-sm">folder_open</span>
+                <h2 class="font-mono text-xs font-bold tracking-widest text-white">DIRECTORY_ROOT</h2>
+            </div>
+            <div class="relative group">
+                <input class="w-full bg-[#111] border border-border-dim rounded-none px-3 py-2 text-[10px] font-mono focus:border-primary focus:ring-0 placeholder:text-slate-600 text-white transition-colors" placeholder="Grep..." type="text"/>
+                <span class="absolute right-2 top-2 text-primary text-[10px]">&gt;_</span>
+            </div>
+        </div>
+        <nav class="flex-1 p-4 font-mono text-[10px] space-y-4">
+            <div class="relative pl-4">
+                <div class="file-tree-line"></div>
+                <div class="flex items-center gap-2 text-white mb-2 font-bold cursor-pointer hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined text-sm text-primary">folder</span>
+                    <span>01_CRITICAL_FINDINGS</span>
+                </div>
+                <div class="pl-4 space-y-1 ml-1.5">
+                    <a class="file-tree-item flex items-center gap-2 py-1 text-primary bg-primary/10 border-l-2 border-primary px-2 -ml-2 w-[calc(100%+8px)]" href="#">
+                        <span class="material-symbols-outlined text-[10px]">description</span>
+                        <span>MS-24-X_L3m0n_RCE</span>
+                    </a>
+                    <a class="file-tree-item flex items-center gap-2 py-1 text-slate-500 hover:text-white hover:bg-white/5 px-2 -ml-2 w-[calc(100%+8px)] transition-colors" href="#">
+                        <span class="material-symbols-outlined text-[10px]">description</span>
+                        <span>MS-24-082_Cloud_Leak</span>
+                    </a>
+                    <a class="file-tree-item flex items-center gap-2 py-1 text-slate-500 hover:text-white hover:bg-white/5 px-2 -ml-2 w-[calc(100%+8px)] transition-colors" href="#">
+                        <span class="material-symbols-outlined text-[10px]">description</span>
+                        <span>MS-24-079_Game_RE</span>
+                    </a>
+                </div>
+            </div>
+            <div class="relative pl-4">
+                <div class="file-tree-line"></div>
+                <div class="flex items-center gap-2 text-white mb-2 font-bold cursor-pointer hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined text-sm">folder</span>
+                    <span>02_RESEARCH_CATEGORIES</span>
+                </div>
+                <div class="pl-4 space-y-1 ml-1.5">
+                    <a class="file-tree-item flex items-center gap-2 py-1 text-slate-500 hover:text-white hover:bg-white/5 px-2 -ml-2 w-[calc(100%+8px)] transition-colors" href="#">
+                        <span class="material-symbols-outlined text-[10px]">folder_zip</span>
+                        <span>Binary Exploitation</span>
+                    </a>
+                    <a class="file-tree-item flex items-center gap-2 py-1 text-slate-500 hover:text-white hover:bg-white/5 px-2 -ml-2 w-[calc(100%+8px)] transition-colors" href="#">
+                        <span class="material-symbols-outlined text-[10px]">folder_zip</span>
+                        <span>Cloud Security</span>
+                    </a>
+                    <a class="file-tree-item flex items-center gap-2 py-1 text-slate-500 hover:text-white hover:bg-white/5 px-2 -ml-2 w-[calc(100%+8px)] transition-colors" href="#">
+                        <span class="material-symbols-outlined text-[10px]">folder_zip</span>
+                        <span>IoT &amp; Hardware</span>
+                    </a>
+                    <a class="file-tree-item flex items-center gap-2 py-1 text-slate-500 hover:text-white hover:bg-white/5 px-2 -ml-2 w-[calc(100%+8px)] transition-colors" href="#">
+                        <span class="material-symbols-outlined text-[10px]">folder_zip</span>
+                        <span>Forensics</span>
+                    </a>
+                </div>
+            </div>
+            <div class="relative pl-4">
+                <div class="flex items-center gap-2 text-white mb-2 font-bold cursor-pointer hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined text-sm">folder</span>
+                    <span>03_ASSETS</span>
+                </div>
+                <div class="pl-4 space-y-1 ml-1.5">
+                    <a class="file-tree-item flex items-center gap-2 py-1 text-slate-500 hover:text-white hover:bg-white/5 px-2 -ml-2 w-[calc(100%+8px)] transition-colors" href="#">
+                        <span class="material-symbols-outlined text-[10px]">image</span>
+                        <span>Diagrams</span>
+                    </a>
+                    <a class="file-tree-item flex items-center gap-2 py-1 text-slate-500 hover:text-white hover:bg-white/5 px-2 -ml-2 w-[calc(100%+8px)] transition-colors" href="#">
+                        <span class="material-symbols-outlined text-[10px]">code</span>
+                        <span>PoC_Scripts</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <div class="p-4 border-t border-border-dim bg-[#111] text-[10px] font-mono text-slate-500">
+            <div class="flex justify-between items-center mb-2">
+                <span>DISK USAGE:</span>
+                <span>42%</span>
+            </div>
+            <div class="w-full h-1 bg-[#333] rounded-none overflow-hidden">
+                <div class="h-full bg-primary w-[42%]"></div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 overflow-y-auto h-full scroll-smooth bg-background-dark relative">
+        <div class="absolute inset-0 bg-grid-pattern bg-[length:40px_40px] opacity-20 pointer-events-none"></div>
+        <div class="w-full h-full px-6 py-10 lg:px-12 lg:py-12 relative z-10">
+            
+            <div class="mb-12 border-b border-border-dim pb-8 relative">
+                 <div class="absolute -top-6 -left-6 w-4 h-4 border-t border-l border-primary"></div>
+                 <!-- <div class="absolute -bottom-1 -right-1 w-4 h-4 border-b border-r border-primary"></div> -->
+                <div class="flex items-center gap-3 mb-2">
+                    <span class="px-2 py-0.5 bg-primary/10 text-primary border border-primary/30 text-[10px] font-mono uppercase tracking-widest">Confidential</span>
+                    <span class="text-[10px] font-mono text-slate-500">ID: ARCHIVE-INDEX-001</span>
+                </div>
+                <h1 class="text-4xl md:text-6xl font-mono font-bold text-white mb-6 tracking-tight uppercase">RESEARCH &amp; BREAKTHROUGHS</h1>
+                <p class="font-mono text-slate-400 max-w-2xl leading-relaxed text-sm border-l-2 border-primary/20 pl-4">
+                    Authorized personnel only. The following archive contains detailed technical breakdowns of zero-day vulnerabilities, APT analysis, and offensive security methodologies discovered by MeowSec.
+                </p>
+            </div>
+
+            <section class="mb-16">
+                <div class="flex items-center justify-between mb-2 font-mono text-[10px] uppercase tracking-wider text-slate-500 border-b border-border-dim pb-2">
+                    <span>// LATEST_DISCLOSURE</span>
+                    <span class="text-primary">PRIORITY: CRITICAL</span>
+                </div>
+                <article class="group relative border border-border-dim bg-[#0a0a0a] transition-all hover:border-primary/50 overflow-hidden tech-border">
+                    <div class="absolute top-0 right-0 p-2 z-10">
+                        <div class="w-2 h-2 bg-red-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(239,68,68,0.6)]"></div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-12 min-h-[300px]">
+                        <!-- Hex Dump Column -->
+                        <div class="md:col-span-5 border-b md:border-b-0 md:border-r border-border-dim bg-[#050505] relative p-6 flex flex-col justify-between">
+                            <div>
+                                <div class="font-mono text-[10px] text-primary/60 mb-3 uppercase tracking-widest">HEX DUMP PREVIEW</div>
+                                <div class="font-mono text-[10px] leading-relaxed text-slate-500 opacity-80 whitespace-pre overflow-hidden font-light">
+00000000  4c 33 6d 30 6e 7b 52 43
+00000010  45 5f 53 75 63 63 33 73
+00000020  73 7d 00 00 00 00 00 00
+00000030  41 41 41 41 41 41 41 41
+00000040  de ad be ef ca fe ba be
+00000050  e8 fc ff ff ff 90 90 90
+00000060  eb 1a 5e 31 c0 88 46 07</div>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-white/5 flex justify-between items-end">
+                                <div class="text-[10px] font-mono text-slate-400">
+                                    <span class="text-slate-600">TARGET:</span> CTF Infrastructure<br/>
+                                    <span class="text-slate-600">VER:</span> v1.0<br/>
+                                    <span class="text-slate-600">ARCH:</span> x86_64
+                                </div>
+                                <span class="material-symbols-outlined text-3xl text-slate-700">memory</span>
+                            </div>
+                        </div>
+                        <!-- Content Column -->
+                        <div class="md:col-span-7 p-8 flex flex-col justify-between bg-card-dark">
+                            <div>
+                                <div class="flex flex-wrap gap-2 mb-4 font-mono text-[10px] uppercase">
+                                    <span class="px-1.5 py-0.5 border border-red-500/50 text-red-500 bg-red-500/10">Critical</span>
+                                    <span class="px-1.5 py-0.5 border border-primary/50 text-primary bg-primary/10">EXP-2024-L3</span>
+                                    <span class="px-1.5 py-0.5 border border-slate-700 text-slate-400">RCE</span>
+                                </div>
+                                <h3 class="text-2xl md:text-3xl font-bold text-white mb-4 group-hover:text-primary transition-colors font-mono tracking-tight uppercase">L3m0nCTF: Automated Exploit Chain</h3>
+                                <p class="text-sm text-slate-400 leading-relaxed font-mono mb-6 border-l border-primary/20 pl-4 py-1">
+                                    Detailed breakdown of the binary exploitation techniques used to secure 1st place. Analysis of cryptographic weaknesses and automated payload generation for zero-click RCE.
+                                </p>
+                            </div>
+                            <div class="flex items-center justify-between mt-auto pt-4 border-t border-white/5">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 bg-[#222] flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-xs text-slate-500">person</span>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <span class="text-[10px] font-bold font-mono text-white uppercase">Quixel200</span>
+                                        <span class="text-[9px] font-mono text-slate-500">2024-11-15</span>
+                                    </div>
+                                </div>
+                                <button class="flex items-center gap-2 text-primary text-xs font-mono font-bold uppercase hover:underline">
+                                    <span>[ Access Writeup ]</span>
+                                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </section>
+
+            <div class="flex items-center justify-between mb-6 border-b border-border-dim pb-2 mt-20">
+                <h3 class="font-mono text-sm font-bold uppercase tracking-wider text-white flex items-center gap-2">
+                    <span class="material-symbols-outlined text-lg">grid_view</span>
+                    Archive Index
+                </h3>
+                <div class="flex gap-2">
+                    <button class="p-1 hover:bg-[#222] text-slate-500 transition-colors"><span class="material-symbols-outlined text-lg">list</span></button>
+                    <button class="p-1 text-black bg-primary"><span class="material-symbols-outlined text-lg">grid_view</span></button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-border-dim border border-border-dim">
+                <!-- Article 1 -->
+                <article class="bg-card-dark p-6 group hover:bg-[#161616] transition-colors relative">
+                    <div class="absolute top-4 right-4 text-white font-mono text-[40px] leading-none opacity-5 font-bold select-none group-hover:text-primary transition-colors">01</div>
+                    <div class="mb-4">
+                        <div class="font-mono text-[10px] text-orange-500 mb-2 uppercase">MS-24-082 // CLOUD</div>
+                        <h4 class="text-lg font-bold text-white font-mono tracking-tight mb-3 group-hover:text-primary transition-colors cursor-pointer uppercase">Cross-Tenant Data Leak</h4>
+                        <p class="text-xs text-slate-500 leading-relaxed line-clamp-3 font-mono">
+                            Identified critical vulnerabilities in core cloud infrastructure allowing unauthorized data access across tenant boundaries in AWS/GCP environments.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5 mt-4">
+                        <span class="px-1 py-0.5 bg-[#1a1a1a] text-[10px] text-slate-500 font-mono uppercase">#CloudSec</span>
+                        <span class="px-1 py-0.5 bg-[#1a1a1a] text-[10px] text-slate-500 font-mono uppercase">#VRP</span>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-dashed border-white/10 flex justify-between items-center text-[10px] font-mono text-slate-400">
+                        <span>CyberGhost05</span>
+                        <span>2024-09-20</span>
+                    </div>
+                </article>
+
+                <!-- Article 2 -->
+                <article class="bg-card-dark p-6 group hover:bg-[#161616] transition-colors relative">
+                    <div class="absolute top-4 right-4 text-white font-mono text-[40px] leading-none opacity-5 font-bold select-none group-hover:text-primary transition-colors">02</div>
+                    <div class="mb-4">
+                        <div class="font-mono text-[10px] text-blue-500 mb-2 uppercase">MS-24-079 // REV-ENG</div>
+                        <h4 class="text-lg font-bold text-white font-mono tracking-tight mb-3 group-hover:text-primary transition-colors cursor-pointer uppercase">Unity Engine Decryption</h4>
+                        <p class="text-xs text-slate-500 leading-relaxed line-clamp-3 font-mono">
+                            Reverse engineering custom asset encryption in Unity-based applications. Developing tools for memory dump analysis and asset extraction.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5 mt-4">
+                        <span class="px-1 py-0.5 bg-[#1a1a1a] text-[10px] text-slate-500 font-mono uppercase">#ReverseEngineering</span>
+                        <span class="px-1 py-0.5 bg-[#1a1a1a] text-[10px] text-slate-500 font-mono uppercase">#GameHacking</span>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-dashed border-white/10 flex justify-between items-center text-[10px] font-mono text-slate-400">
+                        <span>Minato500</span>
+                        <span>2024-10-12</span>
+                    </div>
+                </article>
+
+                <!-- Article 3 -->
+                <article class="bg-card-dark p-6 group hover:bg-[#161616] transition-colors relative">
+                    <div class="absolute top-4 right-4 text-white font-mono text-[40px] leading-none opacity-5 font-bold select-none group-hover:text-primary transition-colors">03</div>
+                    <div class="mb-4">
+                        <div class="font-mono text-[10px] text-green-500 mb-2 uppercase">MS-24-075 // IOT</div>
+                        <h4 class="text-lg font-bold text-white font-mono tracking-tight mb-3 group-hover:text-primary transition-colors cursor-pointer uppercase">ZigBee Protocol Fuzzing</h4>
+                        <p class="text-xs text-slate-500 leading-relaxed line-clamp-3 font-mono">
+                            Uncovering new CVEs in smart home devices through automated fuzzing of the ZigBee communication stack. Custom hardware interface implementation.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5 mt-4">
+                        <span class="px-1 py-0.5 bg-[#1a1a1a] text-[10px] text-slate-500 font-mono uppercase">#HardwareHacking</span>
+                        <span class="px-1 py-0.5 bg-[#1a1a1a] text-[10px] text-slate-500 font-mono uppercase">#IoT</span>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-dashed border-white/10 flex justify-between items-center text-[10px] font-mono text-slate-400">
+                        <span>IronPetal</span>
+                        <span>2024-09-28</span>
+                    </div>
+                </article>
+
+                <!-- Article 4 -->
+                <article class="bg-card-dark p-6 group hover:bg-[#161616] transition-colors relative">
+                    <div class="absolute top-4 right-4 text-white font-mono text-[40px] leading-none opacity-5 font-bold select-none group-hover:text-primary transition-colors">04</div>
+                    <div class="mb-4">
+                        <div class="font-mono text-[10px] text-purple-500 mb-2 uppercase">MS-24-071 // K8S</div>
+                        <h4 class="text-lg font-bold text-white font-mono tracking-tight mb-3 group-hover:text-primary transition-colors cursor-pointer uppercase">Kubernetes Pod Escape</h4>
+                        <p class="text-xs text-slate-500 leading-relaxed line-clamp-3 font-mono">
+                            Demonstrating container escape techniques via misconfigured cap_sys_admin capabilities. Privilege escalation from pod to node root.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5 mt-4">
+                        <span class="px-1 py-0.5 bg-[#1a1a1a] text-[10px] text-slate-500 font-mono uppercase">#Kubernetes</span>
+                        <span class="px-1 py-0.5 bg-[#1a1a1a] text-[10px] text-slate-500 font-mono uppercase">#CloudNative</span>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-dashed border-white/10 flex justify-between items-center text-[10px] font-mono text-slate-400">
+                        <span>CyberGhost05</span>
+                        <span>2024-09-15</span>
+                    </div>
+                </article>
+            </div>
+
+            <div class="mt-12 flex justify-between items-center border-t border-border-dim pt-6 font-mono text-xs">
+                <div class="text-slate-500">
+                     DISPLAYING 1-4 OF 148 RECORDS
+                 </div>
+                <div class="flex gap-2">
+                    <button class="px-3 py-1 border border-border-dim text-slate-500 hover:text-white hover:border-primary transition-colors disabled:opacity-50">PREV</button>
+                    <button class="px-3 py-1 bg-primary text-black border border-primary font-bold">1</button>
+                    <button class="px-3 py-1 border border-border-dim text-slate-500 hover:text-white hover:border-primary transition-colors">2</button>
+                    <button class="px-3 py-1 border border-border-dim text-slate-500 hover:text-white hover:border-primary transition-colors">NEXT</button>
+                </div>
+            </div>
+
+            <footer class="mt-20 text-center font-mono text-[10px] text-slate-600 opacity-60 pb-8">
+                <p>© 2024 MEOWSEC. ALL RIGHTS RESERVED.</p>
+                <p>UNAUTHORIZED ACCESS IS A VIOLATION OF APPLICABLE LAWS.</p>
+            </footer>
+        </div>
+    </main>
+</div>
+
+</body></html>

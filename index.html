@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="description" content="MeowSec is an elite cybersecurity collective specializing in CTF operations, vulnerability research, exploit development, and pentesting. Featuring top operatives CyberGhost05, Quixel200, Minato200, IronPetal, and Kira07."/>
+<meta name="keywords" content="MeowSec, MeowSec Team, Cybersecurity, CTF, Ethical Hacking, Bug Bounty, CyberGhost05, Quixel200, Minato200, IronPetal, Kira07, Exploit Development, Vulnerability Research, InfoSec, Penetration Testing"/>
+<meta name="author" content="MeowSec Team"/>
+<meta name="robots" content="index, follow"/>
+<meta property="og:title" content="MeowSec | Securing the Future"/>
+<meta property="og:description" content="Elite cybersecurity collective. Securing the future through advanced research and operations."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://meowsec.in/"/>
+<title>MeowSec | Securing the Future</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#33ff00","primary-dim": "#22aa00",
+                        "background-dark": "#0a0a0a","background-darker": "#050505",
+                        "card-dark": "#111111",
+                        "border-dim": "#333333",
+                    },
+                    fontFamily: {
+                        "display": ["IBM Plex Mono", "monospace"],
+                        "mono": ["IBM Plex Mono", "monospace"]
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #1a1a1a 1px, transparent 1px), linear-gradient(to bottom, #1a1a1a 1px, transparent 1px)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'IBM Plex Mono', monospace;
+            background-color: #0a0a0a;
+            color: #e5e5e5;
+        }
+        .ascii-border {
+            position: relative;
+        }
+        .ascii-border::before {
+            content: "+--------------------------------------------------------------------------------------------------------------------------------------------------+";
+            position: absolute;
+            top: -10px;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            color: #333;
+            font-size: 10px;
+            opacity: 0.5;
+        }
+        .ascii-border::after {
+            content: "+--------------------------------------------------------------------------------------------------------------------------------------------------+";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            color: #333;
+            font-size: 10px;
+            opacity: 0.5;
+        }
+        .blinking-cursor::after {
+            content: "█";
+            animation: blink 1s step-end infinite;
+            color: #33ff00;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+        .crt-overlay {
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+        .tech-border {
+            border: 1px solid #333;
+            position: relative;
+        }
+        .tech-border::before {
+            content: "";
+            position: absolute;
+            top: -1px; left: -1px;
+            width: 8px; height: 8px;
+            border-top: 2px solid #33ff00;
+            border-left: 2px solid #33ff00;
+        }
+        .tech-border::after {
+            content: "";
+            position: absolute;
+            bottom: -1px; right: -1px;
+            width: 8px; height: 8px;
+            border-bottom: 2px solid #33ff00;
+            border-right: 2px solid #33ff00;
+        }
+    </style>
+</head>
+<body class="bg-background-dark text-slate-300 selection:bg-primary selection:text-black overflow-x-hidden">
+<div class="fixed inset-0 z-50 pointer-events-none crt-overlay opacity-20 h-full w-full"></div>
+<header class="fixed top-0 z-40 w-full border-b border-border-dim bg-background-dark/95 backdrop-blur-sm">
+<div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="text-primary font-bold text-lg">&gt;_</span>
+<h1 class="font-mono font-bold text-xl tracking-tight text-white uppercase">MeowSec<span class="text-primary blink">_</span></h1>
+</div>
+<nav class="hidden md:flex items-center gap-8 text-xs tracking-widest uppercase">
+<a class="text-slate-400 hover:text-primary transition-colors font-medium" href="index.html">[01] Home</a>
+<a class="text-slate-400 hover:text-primary transition-colors font-medium" href="research.html">[02] Research</a>
+<a class="text-slate-400 hover:text-primary transition-colors font-medium" href="exploits.html">[03] Exploits</a>
+<a class="text-slate-400 hover:text-primary transition-colors font-medium" href="achievements.html">[04] Achievements</a>
+<a class="text-slate-400 hover:text-primary transition-colors font-medium" href="about.html">[05] About</a>
+</nav>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center gap-2 text-[10px] text-primary/60 font-mono border border-primary/20 px-2 py-1 bg-primary/5">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                SYSTEM: ONLINE
+            </div>
+<button class="bg-primary hover:bg-primary-dim text-black px-4 py-2 text-xs font-bold font-mono transition-all flex items-center gap-2 uppercase tracking-wide">
+                Terminal Access
+            </button>
+</div>
+</div>
+</header>
+<section class="relative pt-32 pb-32 min-h-screen flex flex-col justify-center border-b border-border-dim">
+<div class="absolute inset-0 bg-grid-pattern bg-[length:40px_40px] opacity-20 pointer-events-none"></div>
+<div class="max-w-7xl mx-auto px-6 relative z-10 w-full">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<div class="lg:col-span-7 flex flex-col items-start text-left">
+<div class="mb-6 inline-flex items-center gap-2 text-primary text-xs font-mono tracking-widest uppercase">
+                   // Protocol v4.0.2 Initiated
+                </div>
+<h1 class="font-mono text-5xl md:text-7xl font-bold mb-8 tracking-tighter text-white leading-none">
+                    SECURING<br/>
+                    THE FUTURE<span class="text-primary">.</span>
+</h1>
+<p class="max-w-xl text-slate-400 text-lg mb-10 leading-relaxed border-l-2 border-primary/30 pl-6">
+                    Elite cybersecurity defense architecture. We specialize in offensive security, zero-day research, and critical infrastructure protection.
+                </p>
+<div class="flex flex-wrap gap-4">
+<button class="group px-8 py-4 bg-transparent border border-primary text-primary hover:bg-primary hover:text-black font-bold font-mono uppercase tracking-wider transition-all relative overflow-hidden">
+<span class="relative z-10 flex items-center gap-2">Execute Contract <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span></span>
+</button>
+<button class="px-8 py-4 bg-transparent border border-border-dim text-slate-400 hover:border-white hover:text-white font-bold font-mono uppercase tracking-wider transition-colors">
+                        Read Manifesto
+                    </button>
+</div>
+</div>
+<div class="lg:col-span-5 w-full">
+<div class="tech-border bg-black p-1 shadow-2xl shadow-primary/5">
+<div class="bg-[#050505] p-4 h-full min-h-[400px] flex flex-col font-mono text-xs md:text-sm">
+<div class="flex justify-between items-center border-b border-white/10 pb-2 mb-4 text-[10px] text-slate-500 uppercase tracking-widest">
+<span>root@meowsec-mainframe</span>
+<span>PID: 8492</span>
+</div>
+<div class="flex-1 overflow-hidden space-y-2">
+<div class="text-slate-400">Loading kernel modules...</div>
+<div class="text-slate-400">Mounting file systems... <span class="text-primary">[OK]</span></div>
+<div class="text-slate-400">Initializing network interfaces...</div>
+<div class="pl-4 text-slate-500">eth0: 192.168.1.42 UP</div>
+<div class="pl-4 text-slate-500">tun0: 10.10.14.7 UP</div>
+<br/>
+<div class="text-white">root@meowsec:~# <span class="text-primary">./status_check.sh</span></div>
+<div class="text-primary">
+                                ----------------------------------------<br/>
+                                MEOWSEC DEFENSE MATRIX ACTIVE<br/>
+                                ----------------------------------------
+                            </div>
+<div class="grid grid-cols-2 gap-4 mt-2 mb-2">
+<div>
+<span class="text-slate-500 block text-[10px]">CPU LOAD</span>
+<div class="w-full h-1 bg-white/10 mt-1"><div class="h-full w-[12%] bg-primary"></div></div>
+</div>
+<div>
+<span class="text-slate-500 block text-[10px]">MEMORY</span>
+<div class="w-full h-1 bg-white/10 mt-1"><div class="h-full w-[45%] bg-primary"></div></div>
+</div>
+<div>
+<span class="text-slate-500 block text-[10px]">NETWORK</span>
+<div class="w-full h-1 bg-white/10 mt-1"><div class="h-full w-[78%] bg-primary animate-pulse"></div></div>
+</div>
+<div>
+<span class="text-slate-500 block text-[10px]">THREAT LEVEL</span>
+<div class="w-full h-1 bg-white/10 mt-1"><div class="h-full w-[2%] bg-green-500"></div></div>
+</div>
+</div>
+<div class="text-white mt-4 blinking-cursor">root@meowsec:~# </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute bottom-0 w-full border-t border-primary/20 bg-primary/5 py-2 overflow-hidden">
+<div class="flex whitespace-nowrap gap-12 animate-[marquee_20s_linear_infinite] text-[10px] font-mono text-primary uppercase tracking-widest">
+<span>System Status: Optimal</span>
+<span>///</span>
+<span>Latest Exploit: CVE-2024-9981 Patched</span>
+<span>///</span>
+<span>New Whitepaper Available: Quantum Decryption Methods</span>
+<span>///</span>
+<span>Recruiting: Senior Penetration Testers</span>
+<span>///</span>
+<span>Encryption Level: Military Grade AES-256</span>
+<span>///</span>
+<span>System Status: Optimal</span>
+<span>///</span>
+<span>Latest Exploit: CVE-2024-9981 Patched</span>
+<span>///</span>
+<span>New Whitepaper Available: Quantum Decryption Methods</span>
+<span>///</span>
+<span>Recruiting: Senior Penetration Testers</span>
+<span>///</span>
+<span>Encryption Level: Military Grade AES-256</span>
+</div>
+</div>
+</section>
+<section class="border-b border-border-dim bg-background-darker py-12">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+<div class="border-l border-primary/20 pl-6">
+<div class="text-3xl font-bold text-white mb-1">500+</div>
+<div class="text-[10px] uppercase tracking-widest text-slate-500">Vulnerabilities Patched</div>
+</div>
+<div class="border-l border-primary/20 pl-6">
+<div class="text-3xl font-bold text-white mb-1">99.9%</div>
+<div class="text-[10px] uppercase tracking-widest text-slate-500">Uptime Guarantee</div>
+</div>
+<div class="border-l border-primary/20 pl-6">
+<div class="text-3xl font-bold text-white mb-1">24/7</div>
+<div class="text-[10px] uppercase tracking-widest text-slate-500">Active Monitoring</div>
+</div>
+<div class="border-l border-primary/20 pl-6">
+<div class="text-3xl font-bold text-white mb-1">Global</div>
+<div class="text-[10px] uppercase tracking-widest text-slate-500">Threat Intelligence</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 bg-background-dark relative">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 border-b border-white/10 pb-6">
+<div>
+<h2 class="text-primary font-mono text-xs font-bold tracking-widest uppercase mb-2">// INTELLIGENCE_FEED</h2>
+<h3 class="text-3xl md:text-4xl font-mono font-bold text-white uppercase">MeowSec Operations</h3>
+</div>
+<a class="text-slate-400 hover:text-white flex items-center gap-2 font-mono text-xs uppercase tracking-wider group transition-colors" href="research.html">
+                [ View All Projects ]
+            </a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/10 border border-white/10">
+<div class="group bg-background-dark p-8 relative hover:bg-[#0f0f0f] transition-colors">
+<div class="absolute top-4 right-4 text-primary/20 group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-3xl">smart_toy</span>
+</div>
+<div class="text-[10px] font-mono text-primary mb-4 border border-primary/20 inline-block px-2 py-0.5">OPS_AI_0X1</div>
+<h4 class="text-lg font-bold text-white mb-3 uppercase">AI Exploitation</h4>
+<p class="text-slate-500 text-sm mb-6 leading-relaxed font-light">
+                    Red team research into adversarial ML and LLM-driven verification bypasses. Developing automated agents for offensive security operations.
+                </p>
+<div class="mt-auto pt-4 border-t border-white/5 flex items-center justify-between">
+<span class="text-[10px] text-slate-600">CyberGhost05</span>
+<span class="text-primary text-lg opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+</div>
+</div>
+<div class="group bg-background-dark p-8 relative hover:bg-[#0f0f0f] transition-colors">
+<div class="absolute top-4 right-4 text-primary/20 group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-3xl">memory</span>
+</div>
+<div class="text-[10px] font-mono text-primary mb-4 border border-primary/20 inline-block px-2 py-0.5">BIN_REV_0X2</div>
+<h4 class="text-lg font-bold text-white mb-3 uppercase">Pwn &amp; Reverse Eng</h4>
+<p class="text-slate-500 text-sm mb-6 leading-relaxed font-light">
+                    Deep analysis of binary protocols and kernel-level exploitation. Expert reverse engineering of proprietary firmware and software.
+                </p>
+<div class="mt-auto pt-4 border-t border-white/5 flex items-center justify-between">
+<span class="text-[10px] text-slate-600">Quixel200</span>
+<span class="text-primary text-lg opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+</div>
+</div>
+<div class="group bg-background-dark p-8 relative hover:bg-[#0f0f0f] transition-colors">
+<div class="absolute top-4 right-4 text-primary/20 group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-3xl">policy</span>
+</div>
+<div class="text-[10px] font-mono text-primary mb-4 border border-primary/20 inline-block px-2 py-0.5">DEF_FOR_0X3</div>
+<h4 class="text-lg font-bold text-white mb-3 uppercase">Digital Forensics</h4>
+<p class="text-slate-500 text-sm mb-6 leading-relaxed font-light">
+                    Advanced incident response and digital forensics methodology. Securing infrastructure against sophisticated lateral movement attacks.
+                </p>
+<div class="mt-auto pt-4 border-t border-white/5 flex items-center justify-between">
+<span class="text-[10px] text-slate-600">Minato200</span>
+<span class="text-primary text-lg opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20 bg-background-darker border-y border-border-dim overflow-hidden">
+<div class="max-w-4xl mx-auto px-6">
+<div class="tech-border bg-black p-2">
+<div class="bg-[#0c0c0c] p-6 font-mono text-sm leading-7">
+<div class="flex gap-2 mb-4">
+<div class="w-3 h-3 rounded-full bg-red-900/50 border border-red-500/50"></div>
+<div class="w-3 h-3 rounded-full bg-yellow-900/50 border border-yellow-500/50"></div>
+<div class="w-3 h-3 rounded-full bg-green-900/50 border border-green-500/50"></div>
+</div>
+<div class="text-slate-500 text-xs mb-4 border-b border-white/5 pb-2">User: admin | Access Level: 0 | Encrypted Connection</div>
+<p class="text-white"><span class="text-primary">admin@meowsec:~$</span> meowsec-cli --scan target.com</p>
+<p class="text-slate-400">[+] Target acquired: target.com (192.0.2.1)</p>
+<p class="text-slate-400">[+] Initiating deep packet inspection...</p>
+<p class="text-slate-400">[+] Analyzing open ports: 80, 443, 8080, 22</p>
+<p class="text-yellow-500">[!] WARNING: Legacy SSH protocol detected on port 22</p>
+<p class="text-white"><span class="text-primary">admin@meowsec:~$</span> meowsec-cli --deploy-defense --mode=active</p>
+<p class="text-primary">[SUCCESS] Defense Matrix Deployed. Real-time monitoring active.</p>
+<p class="text-white mt-2 blinking-cursor"><span class="text-primary">admin@meowsec:~$</span> </p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 bg-background-dark">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex flex-col items-center text-center mb-16">
+<span class="material-symbols-outlined text-4xl text-primary mb-4">groups</span>
+<h2 class="text-3xl md:text-4xl font-mono font-bold text-white mb-4 uppercase">Active Operators</h2>
+<div class="h-px w-24 bg-primary"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative">
+<!-- Operator 1 -->
+<div class="relative p-6 group border border-border-dim hover:border-primary/50 transition-colors bg-card-dark">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 border border-primary/20 bg-primary/5 flex items-center justify-center rounded-full">
+<span class="material-symbols-outlined text-primary">terminal</span>
+</div>
+<div>
+<p class="text-white text-sm font-bold uppercase tracking-wider">CyberGhost05</p>
+<p class="text-slate-500 text-[10px] font-mono">Liyander Rishwanth</p>
+</div>
+</div>
+<p class="text-slate-400 text-xs leading-relaxed font-mono mb-4">
+                    Red Team Operations lead specializing in Web Exploitation and Adversarial AI. Architect of automated verification systems.
+                </p>
+<div class="flex gap-2 text-[10px] font-mono text-primary uppercase">
+<span class="border border-primary/20 px-2 py-1">Web</span>
+<span class="border border-primary/20 px-2 py-1">Red Team</span>
+<span class="border border-primary/20 px-2 py-1">AI/ML Exploitation</span>
+</div>
+</div>
+<!-- Operator 2 -->
+<div class="relative p-6 group border border-border-dim hover:border-primary/50 transition-colors bg-card-dark">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 border border-primary/20 bg-primary/5 flex items-center justify-center rounded-full">
+<span class="material-symbols-outlined text-primary">code</span>
+</div>
+<div>
+<p class="text-white text-sm font-bold uppercase tracking-wider">Quixel200</p>
+<p class="text-slate-500 text-[10px] font-mono">Keerthi Raghavan</p>
+</div>
+</div>
+<p class="text-slate-400 text-xs leading-relaxed font-mono mb-4">
+                    Reverse Engineering expert and Binary Exploitation specialist. L3m0nCTF Winner and CTF Academy member.
+                </p>
+<div class="flex gap-2 text-[10px] font-mono text-primary uppercase">
+<span class="border border-primary/20 px-2 py-1">Rev Eng</span>
+<span class="border border-primary/20 px-2 py-1">Pwn</span>
+</div>
+</div>
+<!-- Operator 3 -->
+<div class="relative p-6 group border border-border-dim hover:border-primary/50 transition-colors bg-card-dark">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 border border-primary/20 bg-primary/5 flex items-center justify-center rounded-full">
+<span class="material-symbols-outlined text-primary">security</span>
+</div>
+<div>
+<p class="text-white text-sm font-bold uppercase tracking-wider">Minato200</p>
+<p class="text-slate-500 text-[10px] font-mono">Harish Kumar</p>
+</div>
+</div>
+<p class="text-slate-400 text-xs leading-relaxed font-mono mb-4">
+                    Web Exploitation specialist and Defensive Forensics expert. TCM Security certified penetration tester.
+                </p>
+<div class="flex gap-2 text-[10px] font-mono text-primary uppercase">
+<span class="border border-primary/20 px-2 py-1">Web</span>
+<span class="border border-primary/20 px-2 py-1">Forensics</span>
+</div>
+</div>
+<!-- Operator 4 -->
+<div class="relative p-6 group border border-border-dim hover:border-primary/50 transition-colors bg-card-dark">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 border border-primary/20 bg-primary/5 flex items-center justify-center rounded-full">
+<span class="material-symbols-outlined text-primary">search</span>
+</div>
+<div>
+<p class="text-white text-sm font-bold uppercase tracking-wider">IronPetal</p>
+<p class="text-slate-500 text-[10px] font-mono">Archana</p>
+</div>
+</div>
+<p class="text-slate-400 text-xs leading-relaxed font-mono mb-4">
+                    Forensics analyst and OSINT master. Expert in digital footprint analysis and open source intelligence gathering.
+                </p>
+<div class="flex gap-2 text-[10px] font-mono text-primary uppercase">
+<span class="border border-primary/20 px-2 py-1">OSINT</span>
+<span class="border border-primary/20 px-2 py-1">Forensics</span>
+</div>
+</div>
+<!-- Operator 5 -->
+<div class="relative p-6 group border border-border-dim hover:border-primary/50 transition-colors bg-card-dark">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 border border-primary/20 bg-primary/5 flex items-center justify-center rounded-full">
+<span class="material-symbols-outlined text-primary">lock</span>
+</div>
+<div>
+<p class="text-white text-sm font-bold uppercase tracking-wider">Kira07</p>
+<p class="text-slate-500 text-[10px] font-mono">Christ Micheal Jeniton</p>
+</div>
+</div>
+<p class="text-slate-400 text-xs leading-relaxed font-mono mb-4">
+                    Cryptography breaker and binary exploitation rookie. Focused on breaking encryption standards.
+                </p>
+<div class="flex gap-2 text-[10px] font-mono text-primary uppercase">
+<span class="border border-primary/20 px-2 py-1">Crypto</span>
+<span class="border border-primary/20 px-2 py-1">Binary</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<footer class="py-12 border-t border-border-dim bg-background-darker relative">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-12">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2">
+<span class="text-primary font-bold">&gt;</span>
+<span class="font-mono font-bold text-xl tracking-tight text-white uppercase">MeowSec</span>
+</div>
+<p class="text-slate-500 text-xs max-w-xs">Advanced cybersecurity solutions for the modern digital battlefield.</p>
+</div>
+<div class="flex flex-wrap gap-8 text-xs font-mono text-slate-500 uppercase tracking-wider">
+<a class="hover:text-primary transition-colors" href="#">[ PGP Key ]</a>
+<a class="hover:text-primary transition-colors" href="#">[ Bug Bounty ]</a>
+<a class="hover:text-primary transition-colors" href="#">[ Privacy ]</a>
+<a class="hover:text-primary transition-colors" href="#">[ Terms ]</a>
+</div>
+<div class="flex items-center gap-4">
+<a class="w-8 h-8 flex items-center justify-center border border-white/10 hover:border-primary hover:bg-primary hover:text-black transition-all text-white" href="#">
+<img class="w-4 h-4 opacity-60 grayscale hover:grayscale-0" data-alt="Github icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAavH6Y2ueEU2SteS-Cla7UsWRTp7iM0it-RaLIXm96fe7zLycreuIfjNTVjvxwSvyZskrtUSfBSZu0zHJnQZz6Ak33G77nCIUbrZUCkHn9EFhi9ogKXHaKSJDF5ne_hhty68bS0ftzt5IJVnFVzTOe6zl-5ZhW2jzF6MNLOPXj95fWh0hMkG6qBrd6YF7kTYEikVmqt-aiu74kTYKWNitpY1MoD0mftVhxgGnYHLZHy5_9bwu4HeTFpg0wcz7KGiMWpzyW7P2Eaka9"/>
+</a>
+<a class="w-8 h-8 flex items-center justify-center border border-white/10 hover:border-primary hover:bg-primary hover:text-black transition-all text-white" href="#">
+<img class="w-4 h-4 opacity-60 grayscale hover:grayscale-0" data-alt="X or Twitter icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-O5GO2dQYnJDdV_BbwMYAYF7lvbWQq_Ho9-k7d9j2HLu7NNe8NRl4_IiWJecpMlCaSYTYZ5OLavlDTx9P9tUW0I6bwr-6z_J6tZfREm7cEuKFRdLNdbhsKXdSa9X5FQgQ6Trv-4vGDN_dVF1kyWTb3OAUNhiys6j9BJqaVNv9HOPGWTGdw9ZtgLKmKc0DBG02j5042qNDZKoxBluP46ESNafh-9m8fRVPGlsFhdSAh7ARb56TOaVti8WwSl_RjpLwglDm5PE6gyFV"/>
+</a>
+</div>
+</div>
+<div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-slate-600 text-[10px] font-mono uppercase">
+                © 2024 MEOWSEC COLLECTIVE. ALL SYSTEMS OPERATIONAL.
+            </p>
+<div class="flex items-center gap-2">
+<span class="h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_8px_#33ff00]"></span>
+<span class="text-[10px] font-mono font-bold text-primary uppercase tracking-widest">Encrypted Connection</span>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

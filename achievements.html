@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="description" content="MeowSec Achievements: Winners of Exploit-X, L3m0nCTF. Runner-ups at HackQuest, ACNCTF, and 0xTi. Hall of Fame recognition on HackTheBox and major bug bounty platforms."/>
+<meta name="keywords" content="MeowSec Achievements, CTF Winners, Exploit-X, L3m0nCTF, HackQuest, ACNCTF, 0xTi, HackTheBox Hacker, Bug Bounty Hall of Fame, Cybersecurity Awards"/>
+<meta name="author" content="MeowSec Team"/>
+<meta name="robots" content="index, follow"/>
+<title>MeowSec | Achievement Dossier</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#33ff00","primary-dim": "#22aa00",
+                        "background-dark": "#0a0a0a","background-darker": "#050505",
+                        "card-dark": "#111111",
+                        "border-dim": "#333333",
+                        "panel": "#111111",
+                    },
+                    fontFamily: {
+                        "display": ["IBM Plex Mono", "monospace"],
+                        "mono": ["IBM Plex Mono", "monospace"]
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #1a1a1a 1px, transparent 1px), linear-gradient(to bottom, #1a1a1a 1px, transparent 1px)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'IBM Plex Mono', monospace;
+            background-color: #0a0a0a;
+            color: #e5e5e5;
+        }
+        .crt-overlay {
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+        .tech-border {
+            border: 1px solid #333;
+            position: relative;
+        }
+        .tech-border::before {
+            content: "";
+            position: absolute;
+            top: -1px; left: -1px;
+            width: 8px; height: 8px;
+            border-top: 2px solid #33ff00;
+            border-left: 2px solid #33ff00;
+        }
+        .tech-border::after {
+            content: "";
+            position: absolute;
+            bottom: -1px; right: -1px;
+            width: 8px; height: 8px;
+            border-bottom: 2px solid #33ff00;
+            border-right: 2px solid #33ff00;
+        }
+        .log-entry-row {
+            transition: all 0.3s ease;
+        }
+        .log-entry-row:hover {
+            background: rgba(51, 255, 0, 0.03);
+            border-left-color: #33ff00;
+        }
+        .blink {
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+        .meta-tag {
+            clip-path: polygon(0 0, 100% 0, 100% 75%, 90% 100%, 0 100%);
+        }
+    </style>
+</head>
+<body class="bg-background-dark text-slate-300 selection:bg-primary selection:text-black overflow-x-hidden">
+<div class="fixed inset-0 z-50 pointer-events-none crt-overlay opacity-20 h-full w-full"></div>
+<header class="fixed top-0 z-40 w-full border-b border-border-dim bg-background-dark/95 backdrop-blur-sm">
+<div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<a href="index.html" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+<span class="text-primary font-bold text-lg">&gt;_</span>
+<h1 class="font-mono font-bold text-xl tracking-tight text-white uppercase">MeowSec<span class="text-primary blink">_</span></h1>
+</a>
+</div>
+<nav class="hidden md:flex items-center gap-8 text-xs tracking-widest uppercase">
+<a class="text-slate-400 hover:text-primary transition-colors font-medium" href="index.html">[01] Home</a>
+<a class="text-slate-400 hover:text-primary transition-colors font-medium" href="research.html">[02] Research</a>
+<a class="text-slate-400 hover:text-primary transition-colors font-medium" href="exploits.html">[03] Exploits</a>
+<a class="text-primary transition-colors font-medium" href="achievements.html">[04] Achievements</a>
+<a class="text-slate-400 hover:text-primary transition-colors font-medium" href="about.html">[05] About</a>
+</nav>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center gap-2 text-[10px] text-primary/60 font-mono border border-primary/20 px-2 py-1 bg-primary/5">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                SYSTEM: ONLINE
+            </div>
+<button class="bg-primary hover:bg-primary-dim text-black px-4 py-2 text-xs font-bold font-mono transition-all flex items-center gap-2 uppercase tracking-wide">
+                Terminal Access
+            </button>
+</div>
+</div>
+</header>
+
+<main class="relative pt-32 pb-32 min-h-screen">
+<div class="absolute inset-0 bg-grid-pattern bg-[length:40px_40px] opacity-20 pointer-events-none"></div>
+    
+    <div class="max-w-6xl mx-auto px-6 relative z-10 w-full">
+        <section class="mb-16 border-b border-border-dim pb-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-8">
+                <div>
+                    <div class="flex items-center gap-2 mb-2 font-mono text-xs text-primary font-bold tracking-widest uppercase">
+                        <span class="material-symbols-outlined text-sm">folder_open</span>
+                        <span>DIRECTORY: /VAR/LOGS/ACHIEVEMENTS</span>
+                    </div>
+                    <h1 class="text-4xl md:text-6xl font-mono font-bold tracking-tighter text-white uppercase mb-4">
+                        Achievement Dossier
+                    </h1>
+                    <p class="font-mono text-sm text-slate-500 max-w-2xl border-l-2 border-primary/30 pl-4 py-1">
+                        &gt;&gt; Decrypting operational history... <br/>
+                        &gt;&gt; Access level: PUBLIC READ-ONLY <br/>
+                        &gt;&gt; Showing compiled records of CTF victories, bounties, and critical disclosures.
+                    </p>
+                </div>
+                <div class="text-right hidden md:block">
+                    <div class="bg-[#050505] border border-border-dim p-2 inline-block text-left tech-border p-3">
+                        <div class="text-[10px] text-slate-500 font-mono uppercase mb-1">Last System Update</div>
+                        <div class="text-lg font-mono text-white font-bold">2024.10.05</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="bg-card-dark border border-border-dim p-4 relative overflow-hidden group hover:border-primary/40 transition-colors">
+                    <div class="absolute top-0 right-0 p-2 opacity-20 text-white">
+                        <span class="material-symbols-outlined text-4xl">bug_report</span>
+                    </div>
+                    <div class="text-[10px] font-mono text-slate-500 uppercase tracking-widest mb-1">Vuln_Reports</div>
+                    <div class="text-3xl font-mono font-bold text-white group-hover:text-primary transition-colors">150+</div>
+                    <div class="w-full bg-[#333] h-1 mt-3">
+                        <div class="bg-primary h-full w-[85%]"></div>
+                    </div>
+                </div>
+                <div class="bg-card-dark border border-border-dim p-4 relative overflow-hidden group hover:border-primary/40 transition-colors">
+                    <div class="absolute top-0 right-0 p-2 opacity-20 text-white">
+                        <span class="material-symbols-outlined text-4xl">attach_money</span>
+                    </div>
+                    <div class="text-[10px] font-mono text-slate-500 uppercase tracking-widest mb-1">Exploits Developed</div>
+                    <div class="text-3xl font-mono font-bold text-white group-hover:text-primary transition-colors">15+</div>
+                    <div class="w-full bg-[#333] h-1 mt-3">
+                        <div class="bg-[#3366ff] h-full w-[65%]"></div>
+                    </div>
+                </div>
+                <div class="bg-card-dark border border-border-dim p-4 relative overflow-hidden group hover:border-primary/40 transition-colors">
+                    <div class="text-[10px] font-mono text-slate-500 uppercase tracking-widest mb-1">CTF_Wins</div>
+                    <div class="text-3xl font-mono font-bold text-white group-hover:text-primary transition-colors">15+</div>
+                    <div class="w-full bg-[#333] h-1 mt-3">
+                        <div class="bg-[#ffcc00] h-full w-[80%]"></div>
+                    </div>
+                </div>
+                <div class="bg-card-dark border border-border-dim p-4 flex flex-col justify-center items-center text-center gap-2 group hover:border-primary/40 transition-colors cursor-pointer group">
+                    <span class="material-symbols-outlined text-3xl text-slate-600 group-hover:text-primary transition-colors">download</span>
+                    <span class="text-xs font-mono font-bold uppercase text-slate-400 group-hover:text-white transition-colors">Download Full Report</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="flex flex-wrap gap-4 mb-8 border-b border-border-dim pb-4 font-mono text-xs">
+            <button class="bg-primary text-black px-4 py-2 uppercase font-bold tracking-wider hover:bg-primary-dim">
+                [ All_Logs ]
+            </button>
+            <button class="text-slate-500 hover:text-white px-3 py-1 uppercase font-bold tracking-wider transition-colors">
+                [ CTF_Ops ]
+            </button>
+            <button class="text-slate-500 hover:text-white px-3 py-1 uppercase font-bold tracking-wider transition-colors">
+                [ Bounties ]
+            </button>
+            <button class="text-slate-500 hover:text-white px-3 py-1 uppercase font-bold tracking-wider transition-colors">
+                [ Research ]
+            </button>
+        </div>
+
+        <div class="space-y-4">
+            <!-- Entry 1: Quixel's CTF Win -->
+            <!-- Exploit-X Winner -->
+            <article class="bg-card-dark border border-border-dim log-entry-row border-l-4 border-l-transparent p-6 relative">
+                <div class="flex flex-col lg:flex-row gap-6 lg:items-center">
+                    <div class="lg:w-48 flex-shrink-0 flex flex-row lg:flex-col gap-4 lg:gap-1 font-mono text-xs text-slate-500 border-b lg:border-b-0 lg:border-r border-border-dim pb-4 lg:pb-0 lg:pr-6">
+                        <div class="flex items-center gap-2 text-primary font-bold">
+                            <span class="material-symbols-outlined text-sm">tag</span>
+                            <span>LOG_ID: 9401</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-sm">calendar_today</span>
+                            <span>2024.08.15</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-sm">public</span>
+                            <span>GLOBAL</span>
+                        </div>
+                    </div>
+                    <div class="flex-grow">
+                        <div class="flex gap-2 mb-3">
+                            <span class="bg-[#cc0000] text-white text-[10px] font-bold font-mono px-2 py-0.5 uppercase meta-tag">
+                                WINNER
+                            </span>
+                            <span class="bg-[#222] text-slate-300 border border-[#444] text-[10px] font-bold font-mono px-2 py-0.5 uppercase">
+                                CTF EVENT
+                            </span>
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-bold text-white mb-2 font-mono uppercase">Exploit-X Winner</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed max-w-3xl mb-4 font-mono">
+                             International Hacking Event (CTF) organized by KPR and EC-Council. MeowSec Team secured the 1st Place victory.
+                        </p>
+                        <div class="flex gap-4 text-xs font-mono text-slate-500">
+                            <span>&gt; International_Op</span>
+                            <span>&gt; EC-Council</span>
+                        </div>
+                    </div>
+                    <div class="flex-shrink-0 lg:pl-6 border-t lg:border-t-0 lg:border-l border-border-dim pt-4 lg:pt-0">
+                        <button class="group flex items-center gap-2 text-white hover:text-primary transition-colors font-mono text-xs font-bold uppercase tracking-widest">
+                            <span>View_Stats</span>
+                            <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- HackQuest 2nd Runner-up -->
+            <article class="bg-card-dark border border-border-dim log-entry-row border-l-4 border-l-transparent p-6 relative">
+                <div class="flex flex-col lg:flex-row gap-6 lg:items-center">
+                    <div class="lg:w-48 flex-shrink-0 flex flex-row lg:flex-col gap-4 lg:gap-1 font-mono text-xs text-slate-500 border-b lg:border-b-0 lg:border-r border-border-dim pb-4 lg:pb-0 lg:pr-6">
+                        <div class="flex items-center gap-2 text-primary font-bold">
+                            <span class="material-symbols-outlined text-sm">tag</span>
+                            <span>LOG_ID: 9402</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-sm">calendar_today</span>
+                            <span>2024.03.10</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-sm">flag</span>
+                            <span>NATIONAL</span>
+                        </div>
+                    </div>
+                    <div class="flex-grow">
+                        <div class="flex gap-2 mb-3">
+                            <span class="bg-[#ffcc00] text-black text-[10px] font-bold font-mono px-2 py-0.5 uppercase meta-tag">
+                                2ND RUNNER-UP
+                            </span>
+                            <span class="bg-[#222] text-slate-300 border border-[#444] text-[10px] font-bold font-mono px-2 py-0.5 uppercase">
+                                JMC / CYBERHEALS
+                            </span>
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-bold text-white mb-2 font-mono uppercase">HackQuest</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed max-w-3xl mb-4 font-mono">
+                            National Level Hacking Event (CTF) organized by JMC and CyberHeals. Tactical operation resulting in a podium finish.
+                        </p>
+                        <div class="flex gap-4 text-xs font-mono text-slate-500">
+                            <span>&gt; National_Level</span>
+                            <span>&gt; Team_Op</span>
+                        </div>
+                    </div>
+                    <div class="flex-shrink-0 lg:pl-6 border-t lg:border-t-0 lg:border-l border-border-dim pt-4 lg:pt-0">
+                        <button class="group flex items-center gap-2 text-white hover:text-primary transition-colors font-mono text-xs font-bold uppercase tracking-widest">
+                            <span>View_Stats</span>
+                            <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ACNCTF RunnerUp -->
+            <article class="bg-card-dark border border-border-dim log-entry-row border-l-4 border-l-transparent p-6 relative">
+                <div class="flex flex-col lg:flex-row gap-6 lg:items-center">
+                    <div class="lg:w-48 flex-shrink-0 flex flex-row lg:flex-col gap-4 lg:gap-1 font-mono text-xs text-slate-500 border-b lg:border-b-0 lg:border-r border-border-dim pb-4 lg:pb-0 lg:pr-6">
+                        <div class="flex items-center gap-2 text-primary font-bold">
+                            <span class="material-symbols-outlined text-sm">tag</span>
+                            <span>LOG_ID: 9403</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-sm">calendar_today</span>
+                            <span>2024.09.20</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-sm">flag</span>
+                            <span>NATIONAL</span>
+                        </div>
+                    </div>
+                    <div class="flex-grow">
+                        <div class="flex gap-2 mb-3">
+                            <span class="bg-[#3366ff] text-white text-[10px] font-bold font-mono px-2 py-0.5 uppercase meta-tag">
+                                RUNNER-UP
+                            </span>
+                            <span class="bg-[#222] text-slate-300 border border-[#444] text-[10px] font-bold font-mono px-2 py-0.5 uppercase">
+                                AMRITA CHENNAI
+                            </span>
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-bold text-white mb-2 font-mono uppercase">ACNCTF</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed max-w-3xl mb-4 font-mono">
+                            National level Hacking Event conducted by Amrita Vishwa Vidyapeetham Chennai. Secured Runner-up position against top university teams.
+                        </p>
+                        <div class="flex gap-4 text-xs font-mono text-slate-500">
+                            <span>&gt; University_League</span>
+                            <span>&gt; Capture_The_Flag</span>
+                        </div>
+                    </div>
+                    <div class="flex-shrink-0 lg:pl-6 border-t lg:border-t-0 lg:border-l border-border-dim pt-4 lg:pt-0">
+                        <button class="group flex items-center gap-2 text-white hover:text-primary transition-colors font-mono text-xs font-bold uppercase tracking-widest">
+                            <span>View_Stats</span>
+                            <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- L3m0nCTF Winner -->
+            <article class="bg-card-dark border border-border-dim log-entry-row border-l-4 border-l-transparent p-6 relative">
+                <div class="flex flex-col lg:flex-row gap-6 lg:items-center">
+                    <div class="lg:w-48 flex-shrink-0 flex flex-row lg:flex-col gap-4 lg:gap-1 font-mono text-xs text-slate-500 border-b lg:border-b-0 lg:border-r border-border-dim pb-4 lg:pb-0 lg:pr-6">
+                        <div class="flex items-center gap-2 text-primary font-bold">
+                            <span class="material-symbols-outlined text-sm">tag</span>
+                            <span>LOG_ID: 9404</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-sm">calendar_today</span>
+                            <span>2024.11.15</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-sm">flag</span>
+                            <span>NATIONAL</span>
+                        </div>
+                    </div>
+                    <div class="flex-grow">
+                        <div class="flex gap-2 mb-3">
+                            <span class="bg-[#cc0000] text-white text-[10px] font-bold font-mono px-2 py-0.5 uppercase meta-tag">
+                                WINNER
+                            </span>
+                            <span class="bg-[#222] text-slate-300 border border-[#444] text-[10px] font-bold font-mono px-2 py-0.5 uppercase">
+                                AMRITA COIMBATORE
+                            </span>
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-bold text-white mb-2 font-mono uppercase">L3m0nCTF</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed max-w-3xl mb-4 font-mono">
+                            National Level Hacking Event (CTF) conducted by Amrita Vishwa Vidyapeetham Coimbatore. MeowSec Team achieved dominant 1st Place victory.
+                        </p>
+                        <div class="flex gap-4 text-xs font-mono text-slate-500">
+                            <span>&gt; Dominance</span>
+                            <span>&gt; L3m0n_Pwn</span>
+                        </div>
+                    </div>
+                    <div class="flex-shrink-0 lg:pl-6 border-t lg:border-t-0 lg:border-l border-border-dim pt-4 lg:pt-0">
+                        <button class="group flex items-center gap-2 text-white hover:text-primary transition-colors font-mono text-xs font-bold uppercase tracking-widest">
+                            <span>View_Stats</span>
+                            <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 0xTi 2nd Runner Up -->
+            <article class="bg-card-dark border border-border-dim log-entry-row border-l-4 border-l-transparent p-6 relative">
+                <div class="flex flex-col lg:flex-row gap-6 lg:items-center">
+                    <div class="lg:w-48 flex-shrink-0 flex flex-row lg:flex-col gap-4 lg:gap-1 font-mono text-xs text-slate-500 border-b lg:border-b-0 lg:border-r border-border-dim pb-4 lg:pb-0 lg:pr-6">
+                        <div class="flex items-center gap-2 text-primary font-bold">
+                            <span class="material-symbols-outlined text-sm">tag</span>
+                            <span>LOG_ID: 9405</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-sm">calendar_today</span>
+                            <span>2024.02.05</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-sm">flag</span>
+                            <span>NATIONAL</span>
+                        </div>
+                    </div>
+                    <div class="flex-grow">
+                        <div class="flex gap-2 mb-3">
+                            <span class="bg-[#ffcc00] text-black text-[10px] font-bold font-mono px-2 py-0.5 uppercase meta-tag">
+                                2ND RUNNER-UP
+                            </span>
+                            <span class="bg-[#222] text-slate-300 border border-[#444] text-[10px] font-bold font-mono px-2 py-0.5 uppercase">
+                                RAJALAXMI ENG.
+                            </span>
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-bold text-white mb-2 font-mono uppercase">0xTi CTF</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed max-w-3xl mb-4 font-mono">
+                             National Level Hacking Event organized by Rajalaxmi Engineering College. Strategic performance securing a top-tier finish.
+                        </p>
+                        <div class="flex gap-4 text-xs font-mono text-slate-500">
+                            <span>&gt; Engineering_CTF</span>
+                            <span>&gt; College_Ops</span>
+                        </div>
+                    </div>
+                    <div class="flex-shrink-0 lg:pl-6 border-t lg:border-t-0 lg:border-l border-border-dim pt-4 lg:pt-0">
+                        <button class="group flex items-center gap-2 text-white hover:text-primary transition-colors font-mono text-xs font-bold uppercase tracking-widest">
+                            <span>View_Stats</span>
+                            <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- CyberGhost HTB (Preserved) -->
+            <article class="bg-card-dark border border-border-dim log-entry-row border-l-4 border-l-transparent p-6 relative">
+                <div class="flex flex-col lg:flex-row gap-6 lg:items-center">
+                    <div class="lg:w-48 flex-shrink-0 flex flex-row lg:flex-col gap-4 lg:gap-1 font-mono text-xs text-slate-500 border-b lg:border-b-0 lg:border-r border-border-dim pb-4 lg:pb-0 lg:pr-6">
+                        <div class="flex items-center gap-2 text-primary font-bold">
+                            <span class="material-symbols-outlined text-sm">tag</span>
+                            <span>LOG_ID: 8821</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-sm">calendar_today</span>
+                            <span>2024.10.12</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-sm">public</span>
+                            <span>GLOBAL</span>
+                        </div>
+                    </div>
+                    <div class="flex-grow">
+                        <div class="flex gap-2 mb-3">
+                            <span class="bg-primary text-black text-[10px] font-bold font-mono px-2 py-0.5 uppercase meta-tag">
+                                RECOGNITION
+                            </span>
+                            <span class="bg-[#222] text-slate-300 border border-[#444] text-[10px] font-bold font-mono px-2 py-0.5 uppercase">
+                                HALL OF FAME
+                            </span>
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-bold text-white mb-2 font-mono uppercase">HTB 'Hacker' & Major Bounties</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed max-w-3xl mb-4 font-mono">
+                            CyberGhost05 holds the 'Hacker' rank on HackTheBox. Secured critical acknowledgments for vulnerabilities discovered in Google Gemini, Oxford University, NASA, and US Government infrastructure.
+                        </p>
+                        <div class="flex gap-4 text-xs font-mono text-slate-500">
+                            <span>&gt; HackTheBox</span>
+                            <span>&gt; Critical Disclosures</span>
+                        </div>
+                    </div>
+                    <div class="flex-shrink-0 lg:pl-6 border-t lg:border-t-0 lg:border-l border-border-dim pt-4 lg:pt-0">
+                        <a href="https://app.hackthebox.com/public/users/1914322" target="_blank" class="group flex items-center gap-2 text-white hover:text-primary transition-colors font-mono text-xs font-bold uppercase tracking-widest">
+                            <span>View_HTB_Profile</span>
+                            <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+
+        <section class="mt-20 border-t border-border-dim pt-16 text-center">
+            <div class="inline-block p-1 bg-gradient-to-r from-primary/50 to-primary-dim/20 rounded-lg">
+                <div class="bg-card-dark rounded border border-border-dim p-8 md:px-20">
+                    <span class="material-symbols-outlined text-4xl text-white mb-4">terminal</span>
+                    <h2 class="text-2xl font-bold text-white mb-2 font-mono uppercase">End of Log File</h2>
+                    <p class="text-slate-400 font-mono text-xs mb-8">&gt;&gt; Initiate communication protocol?</p>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4">
+                        <button class="bg-primary hover:bg-primary-dim text-black px-8 py-3 font-bold font-mono text-sm uppercase tracking-wider transition-all shadow-[0_0_15px_rgba(51,255,0,0.3)]">
+                            Execute_Contract
+                        </button>
+                        <button class="bg-transparent hover:bg-white/5 text-white border border-slate-600 px-8 py-3 font-bold font-mono text-sm uppercase tracking-wider transition-all">
+                            View_GitHub
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<footer class="py-12 border-t border-border-dim bg-background-darker relative">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-12">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2">
+<span class="text-primary font-bold">&gt;</span>
+<span class="font-mono font-bold text-xl tracking-tight text-white uppercase">MeowSec</span>
+</div>
+<p class="text-slate-500 text-xs max-w-xs">Advanced cybersecurity solutions for the modern digital battlefield.</p>
+</div>
+<div class="flex flex-wrap gap-8 text-xs font-mono text-slate-500 uppercase tracking-wider">
+<a class="hover:text-primary transition-colors" href="#">[ PGP Key ]</a>
+<a class="hover:text-primary transition-colors" href="#">[ Bug Bounty ]</a>
+<a class="hover:text-primary transition-colors" href="#">[ Privacy ]</a>
+<a class="hover:text-primary transition-colors" href="#">[ Terms ]</a>
+</div>
+<div class="flex items-center gap-4">
+<a class="w-8 h-8 flex items-center justify-center border border-white/10 hover:border-primary hover:bg-primary hover:text-black transition-all text-white" href="#">
+<img class="w-4 h-4 opacity-60 grayscale hover:grayscale-0" data-alt="Github icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAavH6Y2ueEU2SteS-Cla7UsWRTp7iM0it-RaLIXm96fe7zLycreuIfjNTVjvxwSvyZskrtUSfBSZu0zHJnQZz6Ak33G77nCIUbrZUCkHn9EFhi9ogKXHaKSJDF5ne_hhty68bS0ftzt5IJVnFVzTOe6zl-5ZhW2jzF6MNLOPXj95fWh0hMkG6qBrd6YF7kTYEikVmqt-aiu74kTYKWNitpY1MoD0mftVhxgGnYHLZHy5_9bwu4HeTFpg0wcz7KGiMWpzyW7P2Eaka9"/>
+</a>
+<a class="w-8 h-8 flex items-center justify-center border border-white/10 hover:border-primary hover:bg-primary hover:text-black transition-all text-white" href="#">
+<img class="w-4 h-4 opacity-60 grayscale hover:grayscale-0" data-alt="X or Twitter icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-O5GO2dQYnJDdV_BbwMYAYF7lvbWQq_Ho9-k7d9j2HLu7NNe8NRl4_IiWJecpMlCaSYTYZ5OLavlDTx9P9tUW0I6bwr-6z_J6tZfREm7cEuKFRdLNdbhsKXdSa9X5FQgQ6Trv-4vGDN_dVF1kyWTb3OAUNhiys6j9BJqaVNv9HOPGWTGdw9ZtgLKmKc0DBG02j5042qNDZKoxBluP46ESNafh-9m8fRVPGlsFhdSAh7ARb56TOaVti8WwSl_RjpLwglDm5PE6gyFV"/>
+</a>
+</div>
+</div>
+<div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-slate-600 text-[10px] font-mono uppercase">
+                © 2024 MEOWSEC COLLECTIVE. ALL SYSTEMS OPERATIONAL.
+            </p>
+<div class="flex items-center gap-2">
+<span class="h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_8px_#33ff00]"></span>
+<span class="text-[10px] font-mono font-bold text-primary uppercase tracking-widest">Encrypted Connection</span>
+</div>
+</div>
+</div>
+</footer>
+</body></html>
